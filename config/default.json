@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://MERN-StackFrontToBackTraversy:9cB6QJeZUgX4UZtd@cluster0.kopsj.mongodb.net/MERNBrad?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://MERN-StackFrontToBackTraversy:9cB6QJeZUgX4UZtd@cluster0.kopsj.mongodb.net/MERNBrad?retryWrites=true&w=majority",
+  "jwtSecret": "thisIsMySecretToken"
 }

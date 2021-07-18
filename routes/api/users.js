@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { body, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
@@ -16,7 +18,10 @@ router.post(
   // email must be in correct form
   body('email', 'Please include a valid email').isEmail(),
   // password must be 6 characters long
-  body('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
+  body(
+    'password',
+    'Please enter a password with 6 or more characters'
+  ).isLength({ min: 6 }),
   async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
@@ -31,7 +36,9 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists' }] });
       }
 
       // Get users gravatar
@@ -56,7 +63,21 @@ router.post(
       await user.save();
 
       // Return jsonwebtoken
-      res.send('User registered');
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server error');
