@@ -14,10 +14,10 @@ const Post = require('../../models/Post');
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      'user',
-      ['name', 'avatar']
-    );
+    const profile = await Profile.findOne({ user: req.user.id }).populate('user', [
+      'name',
+      'avatar',
+    ]);
 
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
@@ -149,13 +149,11 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
   try {
     // @todo - remove user's posts
-    await Post.bulkWrite([
-      {
-        deleteMany: {
-          filter: { user: req.user.id },
-        },
-      },
-    ]);
+    await Post.deleteMany({ user: req.user.id });
+    // Remove comments
+    await Post.updateMany({}, { $pull: { comments: { user: req.user.id } } });
+    // Remove likes
+    await Post.updateMany({}, { $pull: { likes: { user: req.user.id } } });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
@@ -183,8 +181,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, company, location, from, to, current, description } =
-      req.body;
+    const { title, company, location, from, to, current, description } = req.body;
 
     const newExp = { title, company, location, from, to, current, description };
 
@@ -242,8 +239,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { school, degree, fieldofstudy, from, to, current, description } =
-      req.body;
+    const { school, degree, fieldofstudy, from, to, current, description } = req.body;
 
     const newEdu = {
       school,
