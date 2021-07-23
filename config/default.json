@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb+srv://MERN-StackFrontToBackTraversy:9cB6QJeZUgX4UZtd@cluster0.kopsj.mongodb.net/MERNBrad?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://MERN-StackFrontToBackTraversy:9cB6QJeZUgX4UZtd@cluster0.kopsj.mongodb.net/MERNBrad_main?retryWrites=true&w=majority",
   "jwtSecret": "thisIsMySecretToken",
   "githubClientId": "367f5aa48765a396a5fb",
   "githubSecret": "86520c213284b47f0c4195fc3fda28d2635b8dbf"
