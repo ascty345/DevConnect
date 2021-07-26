@@ -1,7 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createProfile } from '../../actions/profile';
 
 function CreateProfile() {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -36,6 +40,11 @@ function CreateProfile() {
 
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createProfile(formData));
+  };
+
   return (
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
@@ -44,7 +53,7 @@ function CreateProfile() {
         stand out
       </p>
       <small>* = required field</small>
-      <form className="form">
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="0">* Select Professional Status</option>
