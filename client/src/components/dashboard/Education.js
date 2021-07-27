@@ -1,8 +1,15 @@
 import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'react-moment';
+import { deleteEducation } from '../../actions/profile';
 
 function Education() {
+  const dispatch = useDispatch();
+
+  const deleteEducationHandler = (id) => {
+    dispatch(deleteEducation(id));
+  };
+
   const educations = useSelector((state) => state.profile.profile.education).map(
     (edu) => (
       <tr key={edu._id}>
@@ -13,7 +20,12 @@ function Education() {
           {edu.to === null ? 'Now' : <Moment format="YYYY/MM/DD">{edu.to}</Moment>}
         </td>
         <td>
-          <button className="btn btn-danger">Delete</button>
+          <button
+            onClick={deleteEducationHandler.bind(null, edu._id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     )
@@ -21,7 +33,7 @@ function Education() {
 
   return (
     <Fragment>
-      <h2 className="my-2">Experience Credentials</h2>
+      <h2 className="my-2">Education</h2>
       <table className="table">
         <thead>
           <tr>

@@ -1,8 +1,15 @@
 import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'react-moment';
+import { deleteExperience } from '../../actions/profile';
 
 function Experience() {
+  const dispatch = useDispatch();
+
+  const deleteExperienceHandler = (id) => {
+    dispatch(deleteExperience(id));
+  };
+
   const experiences = useSelector((state) => state.profile.profile.experience).map(
     (exp) => (
       <tr key={exp._id}>
@@ -13,7 +20,12 @@ function Experience() {
           {exp.to === null ? 'Now' : <Moment format="YYYY/MM/DD">{exp.to}</Moment>}
         </td>
         <td>
-          <button className="btn btn-danger">Delete</button>
+          <button
+            onClick={deleteExperienceHandler.bind(null, exp._id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     )
@@ -21,7 +33,7 @@ function Experience() {
 
   return (
     <Fragment>
-      <h2 className="my-2">Experience Credentials</h2>
+      <h2 className="my-2">Experience</h2>
       <table className="table">
         <thead>
           <tr>

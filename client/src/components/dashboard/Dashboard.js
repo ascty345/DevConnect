@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import DashboardAction from './DashboardAction';
 import Experience from './Experience';
@@ -19,6 +19,10 @@ function Dashboard() {
 
   const { profile, loading } = useSelector((state) => state.profile);
 
+  const deleteAccountHandler = () => {
+    dispatch(deleteAccount());
+  };
+
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -32,6 +36,12 @@ function Dashboard() {
           <DashboardAction />
           <Experience />
           <Education />
+
+          <div className="my-2">
+            <button className="btn btn-danger" onClick={deleteAccountHandler}>
+              <i className="fas fas-user-minus"></i> Delete My Account
+            </button>
+          </div>
         </Fragment>
       ) : (
         <Fragment>
