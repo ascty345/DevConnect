@@ -1,11 +1,12 @@
-import React, { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createProfile } from '../../actions/profile';
-import { useHistory } from 'react-router';
+import React, { Fragment, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { Link } from 'react-router-dom';
 
-function CreateProfile() {
+function EditProfile() {
   const dispatch = useDispatch();
+
+  const { profile, loading } = useSelector((state) => state.profile);
 
   const [formData, setFormData] = useState({
     company: '',
@@ -24,6 +25,25 @@ function CreateProfile() {
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
+  useEffect(() => {
+    dispatch(getCurrentProfile());
+    setFormData({
+      company: loading || !profile.company ? '' : profile.company,
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      status: loading || !profile.status ? '' : profile.status,
+      githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','),
+      youtube: loading || !profile.social.youtube ? '' : profile.social.youtube,
+      facebook: loading || !profile.social.facebook ? '' : profile.social.facebook,
+      twitter: loading || !profile.social.twitter ? '' : profile.social.twitter,
+      instagram: loading || !profile.social.instagram ? '' : profile.social.instagram,
+      linkedin: loading || !profile.social.linkedin ? '' : profile.social.linkedin,
+    });
+    // eslint-disable-next-line
+  }, [dispatch, loading]);
+
   const {
     company,
     website,
@@ -41,11 +61,9 @@ function CreateProfile() {
 
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const history = useHistory();
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProfile(formData));
-    history.push('/dashboard');
+    dispatch(createProfile(formData, true));
   };
 
   return (
@@ -218,4 +236,4 @@ function CreateProfile() {
   );
 }
 
-export default CreateProfile;
+export default EditProfile;

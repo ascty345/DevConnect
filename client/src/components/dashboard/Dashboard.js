@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
+import DashboardAction from './DashboardAction';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ function Dashboard() {
         <i className="fas fa-user"> Welcome {user && user.name}</i>
       </p>
       {profile !== null ? (
-        <Fragment>has</Fragment>
+        <Fragment>
+          <DashboardAction />
+        </Fragment>
       ) : (
         <Fragment>
           <p>You have not set up a profile yet, please add some info</p>

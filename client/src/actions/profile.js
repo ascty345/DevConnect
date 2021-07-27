@@ -20,8 +20,9 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 // Create or update profile
+// The history elements should be used with useHistory in component
 export const createProfile =
-  (formData, history, edit = false) =>
+  (formData, edit = false) =>
   async (dispatch) => {
     try {
       const config = {
@@ -38,10 +39,6 @@ export const createProfile =
       });
 
       dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
-
-      if (!edit) {
-        history.push('/dashboard');
-      }
     } catch (error) {
       const errors = error.response.data.errors;
 
