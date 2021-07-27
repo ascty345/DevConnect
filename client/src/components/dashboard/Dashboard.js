@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import DashboardAction from './DashboardAction';
+import Experience from './Experience';
+import Education from './Education';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -28,6 +30,8 @@ function Dashboard() {
       {profile !== null ? (
         <Fragment>
           <DashboardAction />
+          <Experience />
+          <Education />
         </Fragment>
       ) : (
         <Fragment>
