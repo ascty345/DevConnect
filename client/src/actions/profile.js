@@ -219,7 +219,7 @@ export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone')) {
     try {
       //eslint-disable-next-line
-      const res = await axios.delete(`/api/profile`);
+      await axios.delete(`/api/profile`);
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: DELETE_ACCOUNT });

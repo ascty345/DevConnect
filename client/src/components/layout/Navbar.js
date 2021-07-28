@@ -8,6 +8,10 @@ export const Navbar = () => {
 
   const { isAuthenticated, loading } = useSelector((state) => state.auth);
 
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   const authLinks = (
     <ul>
       <li>
@@ -16,7 +20,10 @@ export const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link onClick={(e) => dispatch(logout())} to="#!">
+        <Link to="/profiles">Developers</Link>
+      </li>
+      <li>
+        <Link onClick={logoutHandler} to="#!">
           <i className="fas fa-sign-out-alt"></i> <span className="hide-sm">Logout</span>
         </Link>
       </li>
@@ -26,7 +33,7 @@ export const Navbar = () => {
   const guestLinks = (
     <ul>
       <li>
-        <a href="#!">Developers</a>
+        <Link to="/profiles">Developers</Link>
       </li>
       <li>
         <Link to="/register">Register</Link>

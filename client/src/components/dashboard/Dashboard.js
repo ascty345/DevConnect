@@ -11,13 +11,13 @@ import Education from './Education';
 function Dashboard() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCurrentProfile());
-  }, [dispatch]);
-
   const { user } = useSelector((state) => state.auth);
 
   const { profile, loading } = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    dispatch(getCurrentProfile());
+  }, [dispatch]);
 
   const deleteAccountHandler = () => {
     dispatch(deleteAccount());
