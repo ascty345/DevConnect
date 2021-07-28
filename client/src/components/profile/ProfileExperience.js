@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 
 const ProfileExperience = (props) => {
-  const { company, title, location, current, to, from, description } = props.experience;
+  const { company, title, to, from, description } = props.experience;
 
   return (
     <div>
