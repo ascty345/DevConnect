@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Moment from 'react-moment';
 
-import { addLike, removeLike } from '../../actions/post';
+import { addLike, removeLike, deletePost } from '../../actions/post';
 
 const PostItem = (props) => {
   const dispatch = useDispatch();
@@ -16,6 +16,10 @@ const PostItem = (props) => {
 
   const unlikeHandler = () => {
     dispatch(removeLike(_id));
+  };
+
+  const deletePostHandler = () => {
+    dispatch(deletePost(_id));
   };
 
   return (
@@ -45,7 +49,7 @@ const PostItem = (props) => {
           )}
         </Link>
         {!auth.loading && user === auth.user._id && (
-          <button type="button" className="btn btn-danger">
+          <button onClick={deletePostHandler} type="button" className="btn btn-danger">
             <i className="fas fa-times"></i>
           </button>
         )}
