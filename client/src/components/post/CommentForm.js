@@ -22,10 +22,10 @@ const CommentForm = (props) => {
       <form className="form my-1" onSubmit={submitHandler}>
         <textarea
           onChange={(e) => setText(e.target.value)}
-          name="text"
+          name="aa"
           cols="30"
           rows="5"
-          placeholder="Create a post"
+          placeholder="Create a comment"
           value={text}
           required
         ></textarea>

@@ -143,6 +143,8 @@ export const addComment = (postId, formData) => async (dispatch) => {
       type: POST_ERROR,
       payload: { msg: error.response.statusText, status: error.response.status },
     });
+
+    dispatch('Comment not added', 'danger');
   }
 };
 
