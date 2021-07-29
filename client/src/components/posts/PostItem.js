@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Moment from 'react-moment';
@@ -25,10 +25,10 @@ const PostItem = (props) => {
   return (
     <div className="post bg-white p-1 my-1">
       <div>
-        <a href="profile.html">
+        <Link to={`/profile/${user}`}>
           <img className="round-img" src={avatar} alt="" />
           <h4>{name}</h4>
-        </a>
+        </Link>
       </div>
       <div>
         <p className="my-1">{text}</p>
