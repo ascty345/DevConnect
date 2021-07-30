@@ -11,7 +11,8 @@ In this project, I used 'redux' hooks (useDispatch, useSelector) to manage Redux
 The reason is that I found Redux's hooks help to slim down the codes and that was easier for me to wrap my head around building React's components ✅. 
 
 ## Quick Start 🦜
-    Add a default.json file in config folder with the following
+Add a default.json file in config folder with the following
+
     {
       "mongoURI": "<your_mongoDB_Atlas_uri_with_credentials>",
       "jwtSecret": "secret",
