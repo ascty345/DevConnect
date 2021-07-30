@@ -6,7 +6,7 @@ Technology: React, NodeJs, CSS, HTML, JavaScript.
 
 For the main repo please check out the link: [@bradtraversy/devconnector_2.0](https://github.com/bradtraversy/devconnector_2.0)
 
-## What is the difference?
+# What is the difference 👻?
 In this project, I used 'redux' hooks (useDispatch, useSelector) to manage Redux's state instead of 'MapStateToProps' used in the Brad's course.
 The reason is that I found Redux's hooks help to slim down the codes and that was easier for me to wrap my head around building React's components ✅. 
 
