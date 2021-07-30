@@ -29,12 +29,14 @@ The reason is that I found Redux's hooks help to slim down the codes and that wa
 ### Run both Express & React from root
     npm run dev
 
+Now you can check the site on http://localhost:3000/
+___
+
 ### Build for production
 
     cd client
     npm run build
 
-Now you can check the site on http://localhost:3000/
 
 ### Test production before deploy
 After running a build in the client 👆, cd into the root of the project.
