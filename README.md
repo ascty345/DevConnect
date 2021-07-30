@@ -1,5 +1,9 @@
 # DevConnect
-This is an educational project taught by Brad Traversy.
+This is an educational project taught by Brad Traversy. In this project, I built a fully functional website, which mimics a
+small social network app that includes authentication, profiles and forum posts. 
+
+Technology: React, NodeJs, CSS, HTML, JavaScript.
+
 For the main repo please check out the link: [@bradtraversy/devconnector_2.0](https://github.com/bradtraversy/devconnector_2.0)
 
 ## What is the difference?
